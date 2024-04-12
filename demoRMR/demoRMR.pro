@@ -61,7 +61,8 @@ win32 {
 unix {
     PKGCONFIG += opencv4
 
-INCLUDEPATH += /usr/local/include/opencv4/
+    INCLUDEPATH += /usr/include/opencv4/
+    INCLUDEPATH += /usr/local/include/opencv4/
 
     LIBS += -L/usr/local/lib/        \
         -l:libopencv_core.so       \
