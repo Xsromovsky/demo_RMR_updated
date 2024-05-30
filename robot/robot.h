@@ -49,6 +49,7 @@ public:
         laser_callback=callback;
         wasLaserSet=1;
     }
+
     void setRobotParameters(std::string ipaddress,int robotportRobot, int robotportMe,std::function<int(TKobukiData)> callback )
     {
         robot_ip_portOut=robotportRobot;
@@ -59,7 +60,6 @@ public:
     }
 
     void setTranslationSpeed(int mmpersec);
-
     void setRotationSpeed(double radpersec);
     void setArcSpeed(int mmpersec,int radius);
 

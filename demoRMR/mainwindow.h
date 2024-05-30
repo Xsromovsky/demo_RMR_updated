@@ -83,6 +83,13 @@ private:
      QTimer *timer;
 
      QJoysticks *instance;
+    // sockety na udp pre ros nody
+     int sockfd;
+     struct sockaddr_in servaddr;
+
+     int sockfd_robot;
+     struct sockaddr_in servaddr_robot;
+     // #####
 
      double forwardspeed;//mm/s
      double rotationspeed;//omega/s

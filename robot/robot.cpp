@@ -8,9 +8,9 @@
 #include <termios.h>
 #include <unistd.h>
 #include "unistd.h"
-#include<arpa/inet.h>
-#include<unistd.h>
-#include<sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <sys/socket.h>
 #endif
 
 std::function<int(TKobukiData)> Robot::do_nothing_robot=[](TKobukiData data){std::cout<<"data z kobuki "<<std::endl; return 0;};
@@ -136,6 +136,7 @@ void Robot::setTranslationSpeed(int mmpersec)
     {
 
     }
+    std::cout << "speed: " << mmpersec << std::endl;
 }
 
 void Robot::setRotationSpeed(double radpersec) //left
@@ -157,7 +158,7 @@ void Robot::setRotationSpeed(double radpersec) //left
      }
  }
 
- ///tato funkcia vas nemusi zaujimat
+ /// tato funkcia vas nemusi zaujimat
  /// toto je funkcia s nekonecnou sluckou,ktora cita data z lidaru (UDP komunikacia)
 void Robot::laserprocess()
 {
@@ -215,6 +216,8 @@ void Robot::laserprocess()
         }
         measure.numberOfScans=las_recv_len/sizeof(LaserData);
         //tu mame data..zavolame si funkciu-- vami definovany callback
+        // HERE IS MY COUT CODE
+
 
         std::async(std::launch::async, [this](LaserMeasurement sensdata) { laser_callback(sensdata); },measure);
   ///ako som vravel,toto vas nemusi zaujimat
@@ -241,7 +244,6 @@ void Robot::robotStart()
         std::function<void(void)> f3 =std::bind(&Robot::imageViewer, this);
         camerathreadhandle=std::move(std::thread(f3));
     }
-
 }
 
 
@@ -260,7 +262,7 @@ void Robot::imageViewer()
 
 
 
-        std::cout<<"doslo toto "<<frameBuf.rows<<" "<<frameBuf.cols<<std::endl;
+        // std::cout<<"doslo mi presne toto "<<frameBuf.rows<<" "<<frameBuf.cols<<std::endl;
 
 
       // tu sa vola callback..

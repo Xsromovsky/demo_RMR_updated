@@ -58,7 +58,8 @@ void set_blocking2 (int fd, int should_block)
     if (tcgetattr (fd, &tty) != 0)
     {
         printf ("error %d from tggetattr", errno);
-        return;
+        return;erziou, ktora pouziva CKobuki len kvoli niektorym pomocnym funkciam
+/// kazdy rozumny programator b
     }
 
     tty.c_cc[VMIN]  = should_block ? 1 : 0;
